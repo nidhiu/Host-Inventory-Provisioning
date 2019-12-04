@@ -1,0 +1,83 @@
+- name: Make new directory "{{ localRepoPath + repoRemoteProject }}" for storing git repo
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "o+w"
+  with_items:
+    - "{{ localRepoPath + repoRemoteProject }}"
+    - "{{ localBackUpPath }} "
+  become: true
+
+- name: Install git
+  yum:
+    name: git
+    state: present
+  become: true
+
+- name: Clone git repo at this local location "{{ localRepoPath + repoRemoteProject }}"
+  git:
+    repo: "{{ repoRemoteURL }}"
+    dest: "{{ localRepoPath + repoRemoteProject }}"
+    force: yes
+    ssh_opts: -o StrictHostKeyChecking=no
+    clone: yes
+  register: isCloned
+  become: true
+
+- name: Create host and host backUp files
+  file:
+    path: "{{ item }}"
+    state: touch
+    modification_time: "preserve"
+    access_time: "preserve"
+    mode: "u+wx,o+wx"
+  with_items:
+    - "{{ localBackUpPath + backUp1 }}"
+    - "{{ localBackUpPath + backUp2 }}"
+    - "{{ localRepoPath + hostNetworkFile }}"
+    - "{{ localRepoPath + hostNetwork_hostForDeletion }}"
+    - "{{ localBackUpPath + hostNetwork_diffTemp }}"
+  become: true
+
+- name: Take backup number 2 at "{{ localBackUpPath + backUp2 }}"
+  copy:
+    src: "{{ localBackUpPath + backUp1 }}"
+    dest: "{{ localBackUpPath + backUp2 }}"
+  when: isCloned.changed == true
+  become: true
+
+- name: Take backup number 1 at "{{ localBackUpPath + backUp1 }}"
+  copy:
+    src: "{{ localRepoPath + hostNetworkFile }}"
+    dest: "{{ localBackUpPath + backUp1 }}"
+  when: isCloned.changed == true
+  register: copyFirstBackup
+  become: true
+
+- name: Copy host file from git repo "{{ localRepoPath + repoRemoteProject +'/'+ repoRemoteFile }}" to "{{ localRepoPath + hostNetworkFile }}"
+  copy:
+    src: "{{ localRepoPath + repoRemoteProject +'/'+ repoRemoteFile }}"
+    dest: "{{ localRepoPath + hostNetworkFile }}"
+  when: isCloned.changed == true
+  become: true
+
+- name: storing temp file of difference between this hosts file and last hosts file
+  shell: git diff  "{{ localBackUpPath + backUp1 }}" "{{ localRepoPath + hostNetworkFile }}" > "{{ localBackUpPath + hostNetwork_diffTemp }}"
+  register: isHostDeletion
+  failed_when: isHostDeletion.rc != 1 and isHostDeletion.rc != 0
+  when: isCloned.changed == true
+  become: true
+
+- name: file for deletion of apps on hosts is "{{ hostNetwork_hostForDeletion }}"
+  shell: sed -E '/^[- ][^-].*/!d' hostNetwork_diffTemp | sed -E 's/^[[:blank:]][[:digit:]].*//' | sed 's/^[- ]//' | sed '/^[[:space:]]*$/d' >  hostNetwork_hostForDeletion
+  args:
+   chdir: "{{ localRepoPath }}"
+   warn: false
+  become: true
+  when: isCloned.changed == true
+
+#- name: Delete temp files
+#  file:
+#    path: "{{ localRepoPath + hostNetwork_diffTemp }}"
+#    state: absent
+#  become: true
