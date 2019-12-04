@@ -1,0 +1,25 @@
+######################################################################################
+##############      Install and clone GIT Repo on local machine    ###################
+######################################################################################
+#Remote: Put the name of project hosted in repo at azure
+repoRemoteProject: TestProject
+#Remote: Put the file name, where ip and project names are mentioned
+repoRemoteFile: test.txt
+#Remote: copy the url from azure.dev.com
+repoRemoteURL: https://dhjnk77vik3aizgr4b6hlppei6uuuposgfvvzgi4hfzrhg2knqxq@dev.azure.com/MKumar-001/TestProject/_git/TestProject
+#Local: repo path
+localRepoPath: /home/mkumar/ansible/repo/
+#BackUp of host and delete file
+localBackUpPath: /home/mkumar/ansible/repo/backup/
+
+#hostNetwork: this hosts file will get read by playbook
+hostNetworkFile: hostNetwork
+#hostNetwork_backUp1: backup 1
+backUp1: hostNetwork_backUp1
+#hostNetwork_backUp2: backup 2
+backUp2: hostNetwork_backUp2
+#hostNetwork_forDelete: file contians deletion hosts per app
+hostNetwork_hostForDeletion: hostNetwork_hostForDeletion
+#git diff
+hostNetwork_diffTemp: hostNetwork_diffTemp
+######################################################################################

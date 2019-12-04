@@ -1,0 +1,10 @@
+######################################################################################
+##############   Get Git Repo for Java Projects name and their host's IP/s   #########
+######################################################################################
+####### Step 1. Edit this variable: repoRemoteURL, change others if want to          #
+####### Step 2. Install and clone GIT Repo                                           #
+####### Step 3. Create hosts, hostForDeletion,  and host backUp files                #
+######################################################################################
+- hosts: localhost
+  roles:
+    - {role: git}
