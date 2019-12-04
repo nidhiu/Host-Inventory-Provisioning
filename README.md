@@ -48,6 +48,7 @@ Where
 
 ![](images/howToRun.gif)
 
+# output of playbook
 This is what resulted at Control machine(localhost machine, where provisioning is being done).
 
 ### **_/ansible_**
