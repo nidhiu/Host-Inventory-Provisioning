@@ -5,7 +5,9 @@ A File containing a list of applications hosted on Organization servers
 We are asking host-inventory file from source-control (GIT in this case). This will gives flexibility to developers for add/remove of containers and make them CI pipeline ready. This is equivalent to a list of applications hosted on Organization's server. Ansible will also install git along with performing other tasks.
 
 Example of host inventory file:
+
 ![](images/example.png)
+
 
 Variables related to git login/project name/locations are stored at **_/group_vars/all.yaml_** file
 >Control machine: host-inventory file: **_/ansible/repo/hostNetwork_**
@@ -47,12 +49,13 @@ Where
 ![](images/howToRun.gif)
 
 This is what resulted at Control machine(localhost machine, where provisioning is being done).
- **_/ansible_**
+
+### **_/ansible_**
  
 ![](images/controlMachineOutputFolder_ansible.png)
 
 
- **_/ansible/repo_**
+### **_/ansible/repo_**
  
 ![](images/controlMachineOutputFolder_ansible_repo.png)
 
@@ -63,7 +66,7 @@ host files lives here
 ![](images/example.png)
 
 
- **_/ansible/repo/backup_**
+### **_/ansible/repo/backup_**
  
  
 ![](images/controlMachineOutputFolder_ansible_repo_backup.png)
