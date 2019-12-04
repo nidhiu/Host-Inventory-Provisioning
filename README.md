@@ -47,20 +47,35 @@ Where
 ![](images/howToRun.gif)
 
 This is what resulted at Control machine(localhost machine, where provisioning is being done).
-
-/ansible
+ **_/ansible_**
+ 
 ![](images/controlMachineOutputFolder_ansible.png)
 
-/ansible/repo
+
+ **_/ansible/repo_**
+ 
 ![](images/controlMachineOutputFolder_ansible_repo.png)
+
+
 host files lives here
+
+
 ![](images/example.png)
 
-/ansible/repo/backup
+
+ **_/ansible/repo/backup_**
+ 
+ 
 ![](images/controlMachineOutputFolder_ansible_repo_backup.png)
 
+
 The first Backup
+
+
 ![](images/backup1.png)
 
+
 The difference of Backups, so we can track what is changing b/w subsequent **_git pull_**.
+
+
 ![](images/backup_difference.png)  
