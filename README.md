@@ -1,8 +1,5 @@
 # Host-Inventory-Provisioning
-<<<<<<< HEAD
 A File containing a list of applications hosted on Organisation Server
-=======
-A File containing a list of applications hosted on Organization servers
 ---
 
 We are asking host-inventory file from source-control (GIT in this case). This will gives flexibility to developers for add/remove of containers and make them CI pipeline ready. This is equivalent to a list of applications hosted on Organization's server. Ansible will also install git along with performing other tasks.
@@ -86,4 +83,4 @@ The difference of Backups, so we can track what is changing b/w subsequent **_gi
 
 
 ![](images/backup_difference.png)  
->>>>>>> 8feedb84a7c765a08bd13d9b17de243d754d9065
+
