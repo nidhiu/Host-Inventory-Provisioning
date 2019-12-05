@@ -5,8 +5,8 @@
 repoRemoteProject: TestProject
 #Remote: Put the file name, where ip and project names are mentioned
 repoRemoteFile: test.txt
-#Remote: copy the url from azure.dev.com
-repoRemoteURL: https://dhjnk77vik3aizgr4b6hlppei6uuuposgfvvzgi4hfzrhg2knqxq@dev.azure.com/MKumar-001/TestProject/_git/TestProject
+#Remote: copy the url from azure.dev.com, you will be asked to type password for this repo while running the playbook.
+repoRemoteURL: https://MKumar@dev.azure.com/MKumar/TestProject/_git/TestProject
 #Local: repo path
 localRepoPath: /home/mkumar/ansible/repo/
 #BackUp of host and delete file
